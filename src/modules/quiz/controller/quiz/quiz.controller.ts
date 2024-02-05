@@ -10,7 +10,7 @@ import {
 } from '@nestjs/common';
 import { createQuizDto } from '../../dto/quiz.dto';
 import { QuizService } from '../../service/quiz/quiz.service';
-import { QuizEntity } from 'src/quiz/entity/quiz.entity';
+import { QuizEntity } from '../../entity/quiz.entity';
 
 @Controller('quiz')
 export class QuizController {

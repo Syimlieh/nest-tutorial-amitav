@@ -1,8 +1,8 @@
 import { Injectable, UsePipes } from '@nestjs/common';
 import { Question } from '../../interface/quiz/quiz.interface';
 import { InjectRepository } from '@nestjs/typeorm';
-import { QuizEntity } from 'src/quiz/entity/quiz.entity';
 import { Repository } from 'typeorm';
+import { QuizEntity } from '../../entity/quiz.entity';
 
 @Injectable()
 export class QuizService {
