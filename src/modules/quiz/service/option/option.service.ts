@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateOptionDto } from 'src/quiz/dto/option.dto';
-import { OptionEntity } from 'src/quiz/entity/option.entity';
-import { QuestionEntity } from 'src/quiz/entity/question.entity';
 import { Repository } from 'typeorm';
+import { CreateOptionDto } from '../../dto/option.dto';
+import { OptionEntity } from '../../entity/option.entity';
+import { QuestionEntity } from '../../entity/question.entity';
 
 @Injectable()
 export class OptionService {
