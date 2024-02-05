@@ -1,6 +1,5 @@
-import { TypeOrmModuleOptions } from "@nestjs/typeorm";
-import { QuestionEntity } from "src/quiz/entity/question.entity";
-import { QuizEntity } from "src/quiz/entity/quiz.entity";
+import { TypeOrmModuleOptions } from '@nestjs/typeorm';
+import * as path from 'path';
 
 export const typeOrmConfig: TypeOrmModuleOptions = {
   type: 'mysql',
@@ -9,6 +8,7 @@ export const typeOrmConfig: TypeOrmModuleOptions = {
   username: 'root',
   password: 'root',
   database: 'quiz',
-  entities: [QuizEntity, QuestionEntity],
+  entities: [path.join(__dirname, '../**/**/*.entity{.ts,.js}')],
   synchronize: true, // Set This To false in Production. Might cause data loss
+  logging: true,
 };

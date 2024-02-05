@@ -1,5 +1,12 @@
-import { Entity, Column, PrimaryGeneratedColumn, ManyToOne } from 'typeorm';
+import {
+  Entity,
+  Column,
+  PrimaryGeneratedColumn,
+  ManyToOne,
+  OneToMany,
+} from 'typeorm';
 import { QuizEntity } from './quiz.entity';
+import { OptionEntity } from './option.entity';
 
 @Entity('questions')
 export class QuestionEntity {
@@ -11,4 +18,7 @@ export class QuestionEntity {
 
   @ManyToOne(() => QuizEntity, (quiz) => quiz.questions)
   quiz: QuizEntity;
+
+  @OneToMany(() => OptionEntity, (options) => options.question)
+  options: OptionEntity[];
 }

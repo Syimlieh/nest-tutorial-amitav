@@ -14,6 +14,13 @@ export class QuestionService {
     private quizRepository: Repository<QuizEntity>,
   ) {}
 
+  async findQuestionById(id: number): Promise<QuestionEntity> {
+    return await this.questionRepository.findOne({
+      where: { id },
+      relations: ['options'],
+    });
+  }
+
   async createQuestion(
     payload: CreateQuestionDto,
     quiz: QuizEntity,

@@ -17,20 +17,22 @@ export class QuizService {
     return await this.quizRepository.save(q);
   }
 
-  async fetchQuizById(id: number): Promise<QuizEntity> {
+  async fetchAllQuiz(): Promise<[QuizEntity[], number]> {
     // this return a plain js object
     return await this.quizRepository
       .createQueryBuilder('quiz')
-      .where('quiz.id = :id', { id })
-      .leftJoinAndSelect('quiz.questions', 'questions')
-      .getOne();
+      .leftJoinAndSelect('quiz.questions', 'questions') // joining with questions entity
+      .leftJoinAndSelect('questions.options', 'options') // joining with options entity
+      .take(2) // limit records
+      .getManyAndCount();
   }
 
-  async fetchAllQuiz(): Promise<{
-    entities: QuizEntity[];
-    totalCount: number;
-  }> {
-    const [entities, totalCount] = await this.quizRepository.findAndCount();
-    return { entities, totalCount };
+  async fetchQuizById(id: number): Promise<QuizEntity> {
+    // this return a plain js object
+    const quiz = await this.quizRepository.findOne({
+      where: { id },
+      relations: ['questions', 'questions.options'],
+    });
+    return quiz;
   }
 }
