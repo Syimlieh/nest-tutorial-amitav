@@ -18,4 +18,8 @@ export class UserService {
     newUser.password = user.password;
     return await this.userRepository.save(newUser);
   }
+
+  async fetchUserByEmail(email: string): Promise<User> {
+    return await this.userRepository.findOne({ where: { email } });
+  }
 }
