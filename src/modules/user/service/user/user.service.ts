@@ -19,7 +19,7 @@ export class UserService {
     return await this.userRepository.save(newUser);
   }
 
-  async fetchUserByEmail(email: string): Promise<User> {
+  async fetchUserByEmail(email: string): Promise<User | undefined> {
     return await this.userRepository.findOne({ where: { email } });
   }
 }
